@@ -196,10 +196,10 @@ L.Control.Measure = L.Control.extend({
     this._captureMarker = L.marker(this._map.getCenter(), {
       clickable: true,
       zIndexOffset: this.options.captureZIndex,
-      opacity: 0
+      opacity: 0,
+      iconSize: this._map.getSize().multiplyBy(2)
     }).addTo(this._layer);
     this._setCaptureMarkerIcon();
-
     this._captureMarker
       .on('mouseout', this._handleMapMouseOut, this)
       .on('dblclick', this._handleMeasureDoubleClick, this)
