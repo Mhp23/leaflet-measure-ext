@@ -104,9 +104,9 @@ L.Control.Measure = L.Control.extend({
       model: {
         className: className
       },
+
       labels: this.options.labels
     });
-
     // makes this work on IE touch devices by stopping it from firing a mouseout event when the touch is released
     container.setAttribute('aria-haspopup', true);
     L.DomEvent.disableClickPropagation(container);
@@ -278,17 +278,15 @@ L.Control.Measure = L.Control.extend({
   // format measurements to nice display string based on units in options
   // `{ lengthDisplay: '100 Feet (0.02 Miles)', areaDisplay: ... }`
   _getMeasurementDisplayStrings: function(measurement) {
-    const unitDefinitions = this.options.units;
-
     return {
-      lengthDisplay: buildDisplay(
+      lengthDisplay: this.buildDisplay(
         measurement.length,
         this.options.primaryLengthUnit,
         this.options.secondaryLengthUnit,
         this.options.decPoint,
         this.options.thousandsSep
       ),
-      areaDisplay: buildDisplay(
+      areaDisplay: this.buildDisplay(
         measurement.area,
         this.options.primaryAreaUnit,
         this.options.secondaryAreaUnit,
@@ -296,47 +294,52 @@ L.Control.Measure = L.Control.extend({
         this.options.thousandsSep
       )
     };
+  },
 
-    function buildDisplay(val, primaryUnit, secondaryUnit, decPoint, thousandsSep) {
-      if (primaryUnit && unitDefinitions[primaryUnit]) {
-        let display = formatMeasure(val, unitDefinitions[primaryUnit], decPoint, thousandsSep);
-        if (secondaryUnit && unitDefinitions[secondaryUnit]) {
-          const formatted = formatMeasure(
-            val,
-            unitDefinitions[secondaryUnit],
-            decPoint,
-            thousandsSep
-          );
-          display = `${display} (${formatted})`;
-        }
-        return display;
-      }
-      return formatMeasure(val, null, decPoint, thousandsSep);
-    }
-
-    function formatMeasure(val, unit, decPoint, thousandsSep) {
-      const unitDisplays = {
-        acres: __('acres'),
-        feet: __('feet'),
-        kilometers: __('kilometers'),
-        hectares: __('hectares'),
-        meters: __('meters'),
-        miles: __('miles'),
-        sqfeet: __('sqfeet'),
-        sqmeters: __('sqmeters'),
-        sqmiles: __('sqmiles')
-      };
-
-      const u = L.extend({ factor: 1, decimals: 0 }, unit);
-      const formattedNumber = numberFormat(
-        val * u.factor,
-        u.decimals,
-        decPoint || __('decPoint'),
-        thousandsSep || __('thousandsSep')
+  buildDisplay: function(val, primaryUnit, secondaryUnit, decPoint, thousandsSep) {
+    if (primaryUnit && this.options.units[primaryUnit]) {
+      let display = this.formatMeasure(
+        val,
+        this.options.units[primaryUnit],
+        decPoint,
+        thousandsSep
       );
-      const label = unitDisplays[u.display] || u.display;
-      return [formattedNumber, label].join(' ');
+      if (secondaryUnit && this.options.units[secondaryUnit]) {
+        const formatted = this.formatMeasure(
+          val,
+          this.options.units[secondaryUnit],
+          decPoint,
+          thousandsSep
+        );
+        display = `${display} (${formatted})`;
+      }
+      return display;
     }
+    return this.formatMeasure(val, null, decPoint, thousandsSep);
+  },
+
+  formatMeasure: function(val, unit, decPoint, thousandsSep) {
+    const options = this.options;
+    const unitDisplays = {
+      acres: options.labels['acres'],
+      feet: options.labels['feet'],
+      kilometers: options.labels['kilometers'],
+      hectares: options.labels['hectares'],
+      meters: options.labels['meters'],
+      miles: options.labels['miles'],
+      sqfeet: options.labels['sqfeet'],
+      sqmeters: options.labels['sqmeters'],
+      sqmiles: options.labels['sqmiles']
+    };
+    const u = L.extend({ factor: 1, decimals: 0 }, unit);
+    const formattedNumber = numberFormat(
+      val * u.factor,
+      u.decimals,
+      decPoint || __('decPoint'),
+      thousandsSep || __('thousandsSep')
+    );
+    const label = unitDisplays[u.display] || u.display;
+    return [formattedNumber, label].join(' ');
   },
   // update results area of dom with calced measure from `this._latlngs`
   _updateResults: function() {
