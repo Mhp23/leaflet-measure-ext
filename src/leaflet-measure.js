@@ -335,8 +335,8 @@ L.Control.Measure = L.Control.extend({
     const formattedNumber = numberFormat(
       val * u.factor,
       u.decimals,
-      decPoint || __('decPoint'),
-      thousandsSep || __('thousandsSep')
+      decPoint || options.labels['decPoint'],
+      thousandsSep || options.labels['thousandsSep']
     );
     const label = unitDisplays[u.display] || u.display;
     return [formattedNumber, label].join(' ');
