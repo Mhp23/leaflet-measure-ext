@@ -56,7 +56,8 @@ const defaultLabels = {
   sqmeters: __('sqmeters'),
   sqmiles: __('sqmiles'),
   decPoint: __('decPoint'),
-  thousandsSep: __('thousandsSep')
+  thousandsSep: __('thousandsSep'),
+  coordinates: 'decimal' /* move to options */
 };
 
 L.Control.Measure = L.Control.extend({
