@@ -1,7 +1,11 @@
 <div class="group">
-  <p class="lastpoint heading">{{ labels.lastPoint }}</p>
-  <p>{{ model.lastCoord.dms.y }} <span class="coorddivider">/</span> {{ model.lastCoord.dms.x }}</p>
-  <p>{{ numberFormat(model.lastCoord.dd.y, 6) }} <span class="coorddivider">/</span> {{ numberFormat(model.lastCoord.dd.x, 6) }}</p>
+  <p class="lastpoint heading"><span class="heading">{{ labels.lastPoint }}</span>
+  <% if ( labels.coordinates.indexOf('degree') > 0) { %>
+    {{ model.lastCoord.dms.y }} <span class="coorddivider">/</span> {{ model.lastCoord.dms.x }}
+  <% } else { %>
+    {{ numberFormat(model.lastCoord.dd.y, 6) }} <span class="coorddivider">/</span> {{ numberFormat(model.lastCoord.dd.x, 6) }}
+  <% } %>
+  </p>
 </div>
 <% if (model.pointCount > 1) { %>
 <div class="group">
