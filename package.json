@@ -1,11 +1,11 @@
 {
   "name": "leaflet-measure-ext",
-  "version": "3.1.0",
+  "version": "3.2.0",
   "description": "Coordinate, linear, and area measure tool for Leaflet maps",
   "main": "dist/leaflet-measure.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/kstopa/leaflet-measure-ex.git"
+    "url": "git://github.com/kstopa/leaflet-measure-ext.git"
   },
   "keywords": [
     "leaflet",
