@@ -1,16 +1,22 @@
-# leaflet-measure
+# leaflet-measure (Extended edition)
 
 Coordinate, linear, and area measure control for [Leaflet](http://leafletjs.com) maps. Extends [L.Control](http://leafletjs.com/reference.html#control).
 
 <hr>
 
+## Installation
 
-## [Demo](http://ljagis.github.io/leaflet-measure)
+You can download and build the repository (see bellow) or install it from `npm` by typing:
+
+    npm install leaflet-measure-ext
+
+## Demo
+
+To see how it looks please check the official [Demo](http://ljagis.github.io/leaflet-measure).
 
 ![](http://ljagis.github.io/leaflet-measure/assets/leaflet-measure.png)
 
 <hr>
-
 
 ## Add control to a Leaflet map
 
@@ -172,20 +178,6 @@ Map features may be styled using CSS SVG style attributes. Features generated fr
 
 <hr>
 
-## Development
-
-The build process uses npm (Node Package Management) which comes with Node.js.
-
-After you have Node.js installed you can do ```npm install``` to install dependencies and ```npm run-script start:dev``` to initialize a local server (localhost:8080) for leaflet-measure assets.
-
-It detects modifications on source files and re-compiles to /leaflet-measure.css and /leaflet-measure.js.
-
-## Distribuition Build
-
-With npm installed do ```npm install``` to install dependencies and ```npm run-script build``` to generate dist/leaflet-measure.css and dist/leaflet-measure.js.
-
-It will also generate dist/leaflet-measure.{locale}.js files for each localization available.
-
 ## Internationalization
 
 ### Build-in translations
@@ -241,3 +233,19 @@ labels = {
   "thousandsSep": ","
 };
 ```
+
+<hr>
+
+## Development
+
+The build process uses npm (Node Package Management) which comes with Node.js. **Note that Node 15+ is not supported**.
+
+After you have Node.js installed you can do ```npm install``` to install dependencies and ```npm run-script start:dev``` to initialize a local server (localhost:8080) for leaflet-measure assets.
+
+It detects modifications on source files and re-compiles to /leaflet-measure.css and /leaflet-measure.js.
+
+## Distribuition Build
+
+With npm installed do ```npm install``` to install dependencies and ```npm run-script build``` to generate dist/leaflet-measure.css and dist/leaflet-measure.js.
+
+It will also generate dist/leaflet-measure.{locale}.js files for each localization available.
