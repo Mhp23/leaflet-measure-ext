@@ -1,13 +1,24 @@
 leaflet-measure Changelog
 =========================
 
+## 3.2.1 (2022-08-05)
+
+* Solved issue with auto-panning on Leaflet 1.8.0.
+
+## 3.2.0 (2020-10-29)
+
+* Improved translations
+* Added option to show decimal or degree based coordinates
+* Solved issue when setting custom translations
+
+
 ## 3.1.0 (2018-04-08)
 
-* adds new languages cz, hu, ro, sk, and sl
+* Adds new languages cz, hu, ro, sk, and sl
 
 ## 3.0.3 (2018-02-19)
 
-* fixes error caused by canvas renderer:w
+* Fixes error caused by canvas renderer:w
 
 ## 3.0.0 (2018-02-14)
 
