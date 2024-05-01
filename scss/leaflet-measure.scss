@@ -53,6 +53,27 @@ $button-icon-spacing: 4px;
   margin-right: $spacing-internal * 0.5;
 }
 
+.leaflet-measure-polygon-popup ul {
+  margin: $spacing-external 0 0 0;
+  padding: $spacing-internal 0 0 0;
+  border-top: solid 1px $color-divider;
+  text-align: right;
+
+  list-style: none;
+  list-style-image: none;
+
+  display: flex;
+  justify-content: center;
+
+  li {
+    display: inline;
+    margin: 0 $spacing-internal 0 0;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
 .leaflet-control-measure,
 .leaflet-measure-resultpopup {
   h3 {
@@ -197,7 +218,8 @@ $button-icon-spacing: 4px;
   }
 }
 
-.leaflet-measure-resultpopup {
+.leaflet-measure-resultpopup,
+.leaflet-measure-polygon-popup {
   a.zoomto {
     @include button(focus);
   }

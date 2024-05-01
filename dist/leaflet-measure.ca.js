@@ -2029,6 +2029,6 @@
   },
   function(e, t) {
     e.exports =
-      '<p><span class=heading>{{ labels.area }}</span> {{ model.areaDisplay }}</p> <p><span class=heading>{{ labels.perimeter }}</span> {{ model.lengthDisplay }}</p> <ul class=tasks> <li><a href=# class="js-zoomto zoomto">{{ labels.centerOnArea }}</a></li> <li><a href=# class="js-deletemarkup deletemarkup">{{ labels.delete }}</a></li> </ul> ';
+      '<div class=leaflet-measure-polygon-popup> <p><span class=heading>{{ labels.area }}</span> {{ model.areaDisplay }}</p> <p><span class=heading>{{ labels.perimeter }}</span> {{ model.lengthDisplay }}</p> <ul> <li><a href=# class="js-zoomto zoomto">{{ labels.centerOnArea }}</a></li> <li><a href=# class="js-deletemarkup deletemarkup">{{ labels.delete }}</a></li> </ul> </div> ';
   }
 ]);
