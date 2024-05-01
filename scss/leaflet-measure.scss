@@ -1,7 +1,7 @@
 // leaflet-measure.scss
 
 $color-divider: #ddd;
-$color-button: #5e66cc;
+$color-button: #4fae85;
 $color-lightertext: #999;
 
 $spacing-external: 12px;
@@ -48,6 +48,11 @@ $button-icon-spacing: 4px;
   @include hoverbutton;
 }
 
+.leaflet-popup-content-wrapper .heading {
+  color: $color-lightertext;
+  margin-right: $spacing-internal * 0.5;
+}
+
 .leaflet-control-measure,
 .leaflet-measure-resultpopup {
   h3 {
@@ -71,6 +76,9 @@ $button-icon-spacing: 4px;
     list-style: none;
     list-style-image: none;
 
+    display: flex;
+    justify-content: center;
+
     li {
       display: inline;
       margin: 0 $spacing-internal 0 0;
@@ -81,7 +89,7 @@ $button-icon-spacing: 4px;
   }
 
   .coorddivider {
-    color: $color-lightertext;
+    color: #000000;
   }
 }
 
@@ -121,24 +129,27 @@ $button-icon-spacing: 4px;
       margin-bottom: $spacing-internal;
     }
     .tasks {
+      display: flex;
       margin-top: 0;
       padding-top: 0;
       border-top: 0;
       text-align: left;
+      align-items: center;
+      justify-content: flex-start;
     }
   }
 
   .close-button,
   .close-button-measure {
-    display: inline-block;
-    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAQAAAD8x0bcAAAAkUlEQVR4AZWRxQGDUBAFJ9pMflNIP/iVSkIb2wgccXd7g7O+3JXCQUgqBAfFSl8CMooJGQHfuUlEwZpoahZQ7ODTSXWJQkxyioock7BL2tXmdF4moJNX6IDZfbUBQNrX7qfeXfPuqwBAQjEz60w64htGJ+luFH48gt+NYe6v5b/cnr9asM+HlRQ2Qlwh2CjuqQQ9vKsKTwhQ1wAAAABJRU5ErkJggg==);
+    background-size: 18px;
+    background-image: url('../assets/cancel_hd.png');
     height: 18px;
     width: 18px;
     margin-right: 0;
     float: right;
     vertical-align: middle;
     text-align: right;
-    margin-top: 0px;
+    margin-top: 1px;
     margin-left: 16px;
     position: relative;
     left: 2px;
