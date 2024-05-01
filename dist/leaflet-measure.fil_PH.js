@@ -1031,9 +1031,9 @@
       r && c(e, t, r) && (t = void 0), (e = d(e)), (t = o({}, t, n, a));
       var x,
         O,
-        L = o({}, t.imports, n.imports, a),
-        k = p(L),
-        P = i(L, k),
+        k = o({}, t.imports, n.imports, a),
+        L = p(k),
+        P = i(k, L),
         E = 0,
         C = t.interpolate || j,
         A = "__p += '",
@@ -1081,7 +1081,7 @@
           A +
           'return __p\n}');
       var $ = s(function() {
-        return Function(k, D + 'return ' + A).apply(void 0, P);
+        return Function(L, D + 'return ' + A).apply(void 0, P);
       });
       if ((($.source = A), u($))) throw $;
       return $;
@@ -2014,7 +2014,7 @@
   },
   function(e, t) {
     e.exports =
-      '<a class="{{ model.className }}-toggle js-toggle" href=# title="{{ labels.measureDistancesAndAreas }}">{{ labels.measure }}</a> <div class="{{ model.className }}-interaction js-interaction"> <div class="js-startprompt startprompt"> <h3><span class="{{ model.className }}-close-button close-button"></span> {{ labels.measureDistancesAndAreas }}</h3> <ul class=tasks> <a href=# class="js-start start">{{ labels.createNewMeasurement }}</a> </ul> </div> <div class=js-measuringprompt> <h3><span class="{{ model.className }}-close-button close-button-measure"></span> {{ labels.measureDistancesAndAreas }}</h3> <p class=js-starthelp>{{ labels.startCreating }}</p> <div class="js-results results"></div> <ul class="js-measuretasks tasks"> <li><a href=# class="js-cancel cancel">{{ labels.cancel }}</a></li> <li><a href=# class="js-finish finish">{{ labels.finishMeasurement }}</a></li> </ul> </div> </div> ';
+      '<a class="{{ model.className }}-toggle js-toggle" href=# title="{{ labels.measureDistancesAndAreas }}">{{ labels.measure }}</a> <div class="{{ model.className }}-interaction js-interaction"> <div class="js-startprompt startprompt"> <h3><span class="{{ model.className }}-close-button close-button"></span> {{ labels.measureDistancesAndAreas }}</h3> <ul class=tasks> <a href=# class="js-start start start-link">{{ labels.createNewMeasurement }}</a> </ul> </div> <div class=js-measuringprompt> <h3><span class="{{ model.className }}-close-button close-button-measure"></span> {{ labels.measureDistancesAndAreas }}</h3> <p class=js-starthelp>{{ labels.startCreating }}</p> <div class="js-results results"></div> <ul class="js-measuretasks tasks"> <li><a href=# class="js-cancel cancel">{{ labels.cancel }}</a></li> <li><a href=# class="js-finish finish">{{ labels.finishMeasurement }}</a></li> </ul> </div> </div> ';
   },
   function(e, t) {
     e.exports =
