@@ -84,7 +84,7 @@ $button-icon-spacing: 4px;
 
 .leaflet-measure-polygon-popup {
   .group {
-    margin-top: $spacing-internal;
+    margin-top: $spacing-internal / 2;
     padding-top: $spacing-internal;
     border-top: dotted 1px lighten($color-divider, 5);
   }
@@ -265,6 +265,6 @@ $button-icon-spacing: 4px;
   a.deletemarkup {
     @include button(trash);
     padding-top: 2px;
-    background-size: $button-icon-size + 3 $button-icon-size + 3;
+    background-size: $button-icon-size + 4 $button-icon-size + 4;
   }
 }
