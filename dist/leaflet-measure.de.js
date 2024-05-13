@@ -428,30 +428,30 @@
             m = 'FeatureCollection' === d,
             y = 'Feature' === d,
             b = m ? e.features.length : 1,
-            g = 0;
-          g < b;
-          g++
+            v = 0;
+          v < b;
+          v++
         ) {
-          (c = m ? e.features[g].geometry : y ? e.geometry : e),
+          (c = m ? e.features[v].geometry : y ? e.geometry : e),
             (p = !!c && 'GeometryCollection' === c.type),
             (l = p ? c.geometries.length : 1);
-          for (var v = 0; v < l; v++) {
+          for (var g = 0; g < l; g++) {
             var _ = 0,
               M = 0;
-            if (null !== (a = p ? c.geometries[v] : c)) {
+            if (null !== (a = p ? c.geometries[g] : c)) {
               u = a.coordinates;
               var j = a.type;
               switch (((f = !r || ('Polygon' !== j && 'MultiPolygon' !== j) ? 0 : 1), j)) {
                 case null:
                   break;
                 case 'Point':
-                  if (!1 === t(u, h, g, _, M)) return !1;
+                  if (!1 === t(u, h, v, _, M)) return !1;
                   h++, _++;
                   break;
                 case 'LineString':
                 case 'MultiPoint':
                   for (o = 0; o < u.length; o++) {
-                    if (!1 === t(u[o], h, g, _, M)) return !1;
+                    if (!1 === t(u[o], h, v, _, M)) return !1;
                     h++, 'MultiPoint' === j && _++;
                   }
                   'LineString' === j && _++;
@@ -460,7 +460,7 @@
                 case 'MultiLineString':
                   for (o = 0; o < u.length; o++) {
                     for (s = 0; s < u[o].length - f; s++) {
-                      if (!1 === t(u[o][s], h, g, _, M)) return !1;
+                      if (!1 === t(u[o][s], h, v, _, M)) return !1;
                       h++;
                     }
                     'MultiLineString' === j && _++, 'Polygon' === j && M++;
@@ -471,7 +471,7 @@
                   for (o = 0; o < u.length; o++) {
                     for ('MultiPolygon' === j && (M = 0), s = 0; s < u[o].length; s++) {
                       for (i = 0; i < u[o][s].length - f; i++) {
-                        if (!1 === t(u[o][s][i], h, g, _, M)) return !1;
+                        if (!1 === t(u[o][s][i], h, v, _, M)) return !1;
                         h++;
                       }
                       M++;
@@ -642,8 +642,8 @@
       m = r(88),
       y = { imports: { numberFormat: d.numberFormat }, interpolate: /{{([\s\S]+?)}}/g },
       b = (0, s.default)(m.controlTemplate, y),
-      g = (0, s.default)(m.resultsTemplate, y),
-      v = (0, s.default)(m.pointPopupTemplate, y),
+      v = (0, s.default)(m.resultsTemplate, y),
+      g = (0, s.default)(m.pointPopupTemplate, y),
       _ = (0, s.default)(m.linePopupTemplate, y),
       M = (0, s.default)(m.areaPopupTemplate, y),
       j = {
@@ -898,7 +898,7 @@
           t = (this._resultsModel = L.extend({}, e, this._getMeasurementDisplayStrings(e), {
             pointCount: this._latlngs.length
           }));
-        this.$results.innerHTML = g({ model: t, labels: this.options.labels });
+        this.$results.innerHTML = v({ model: t, labels: this.options.labels });
       },
       _handleMeasureMove: function(e) {
         this._measureDrag
@@ -919,7 +919,7 @@
             o = 1 === e.length ? n : L.extend({}, n, this._getMeasurementDisplayStrings(n));
           1 === e.length
             ? ((t = L.circleMarker(e[0], this._symbols.getSymbol('resultPoint'))),
-              (r = v({ model: o, labels: this.options.labels })))
+              (r = g({ model: o, labels: this.options.labels })))
             : 2 === e.length
               ? ((t = L.polyline(e, this._symbols.getSymbol('resultLine'))),
                 (r = _({ model: o, labels: this.options.labels })))
@@ -961,6 +961,12 @@
               { popupContainer: s, model: o, resultFeature: t },
               !1
             );
+          var l = document.querySelector('.leaflet-area-popup-close-button'),
+            p = document.querySelector('.leaflet-measure-resultpopup');
+          l &&
+            l.addEventListener('click', function() {
+              p && p.parentNode.removeChild(p);
+            });
         }
       },
       _handleMeasureClick: function(e) {
@@ -1064,9 +1070,9 @@
         (C += "';\n");
       var F = w.call(t, 'variable') && t.variable;
       if (F) {
-        if (v.test(F)) throw new Error(m);
+        if (g.test(F)) throw new Error(m);
       } else C = 'with (obj) {\n' + C + '\n}\n';
-      (C = (O ? C.replace(y, '') : C).replace(b, '$1').replace(g, '$1;')),
+      (C = (O ? C.replace(y, '') : C).replace(b, '$1').replace(v, '$1;')),
         (C =
           'function(' +
           (F || 'obj') +
@@ -1099,8 +1105,8 @@
       m = 'Invalid `variable` option passed into `_.template`',
       y = /\b__p \+= '';/g,
       b = /\b(__p \+=) '' \+/g,
-      g = /(__e\(.*?\)|\b__t\)) \+\n'';/g,
-      v = /[()=,{}\[\]\/\s]/,
+      v = /(__e\(.*?\)|\b__t\)) \+\n'';/g,
+      g = /[()=,{}\[\]\/\s]/,
       _ = /\$\{([^\\}]*(?:\\.[^\\}]*)*)\}/g,
       M = /($^)/,
       j = /['\n\r\u2028\u2029\\]/g,
@@ -2029,6 +2035,6 @@
   },
   function(e, t) {
     e.exports =
-      '<div class=leaflet-measure-polygon-popup> <p><span class=heading>{{ labels.area }}</span> {{ model.areaDisplay }}</p> <p><span class=heading>{{ labels.perimeter }}</span> {{ model.lengthDisplay }}</p> <ul> <li><a href=# class="js-zoomto zoomto">{{ labels.centerOnArea }}</a></li> <li><a href=# class="js-deletemarkup deletemarkup">{{ labels.delete }}</a></li> </ul> </div> ';
+      '<div class=leaflet-measure-polygon-popup> <a class=leaflet-area-popup-close-button role=button aria-label="Close popup"></a> <p><span class=heading>{{ labels.perimeter }}</span> {{ model.lengthDisplay }}</p> <div class=group> <p><span class=heading>{{ labels.area }}</span> {{ model.areaDisplay }}</p> </div> <ul> <li><a href=# class="js-zoomto zoomto">{{ labels.centerOnArea }}</a></li> <li><a href=# class="js-deletemarkup deletemarkup">{{ labels.delete }}</a></li> </ul> </div> ';
   }
 ]);

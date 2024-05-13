@@ -961,6 +961,12 @@
               { popupContainer: i, model: o, resultFeature: t },
               !1
             );
+          var l = document.querySelector('.leaflet-area-popup-close-button'),
+            p = document.querySelector('.leaflet-measure-resultpopup');
+          l &&
+            l.addEventListener('click', function() {
+              p && p.parentNode.removeChild(p);
+            });
         }
       },
       _handleMeasureClick: function(e) {
@@ -1034,14 +1040,14 @@
         P = p(L),
         k = s(L, P),
         E = 0,
-        A = t.interpolate || j,
-        C = "__p += '",
+        C = t.interpolate || j,
+        A = "__p += '",
         S = RegExp(
           (t.escape || j).source +
             '|' +
-            A.source +
+            C.source +
             '|' +
-            (A === f ? _ : j).source +
+            (C === f ? _ : j).source +
             '|' +
             (t.evaluate || j).source +
             '|$',
@@ -1053,21 +1059,21 @@
       e.replace(S, function(t, r, n, o, i, s) {
         return (
           n || (n = o),
-          (C += e.slice(E, s).replace(M, l)),
-          r && ((x = !0), (C += "' +\n__e(" + r + ") +\n'")),
-          i && ((O = !0), (C += "';\n" + i + ";\n__p += '")),
-          n && (C += "' +\n((__t = (" + n + ")) == null ? '' : __t) +\n'"),
+          (A += e.slice(E, s).replace(M, l)),
+          r && ((x = !0), (A += "' +\n__e(" + r + ") +\n'")),
+          i && ((O = !0), (A += "';\n" + i + ";\n__p += '")),
+          n && (A += "' +\n((__t = (" + n + ")) == null ? '' : __t) +\n'"),
           (E = s + t.length),
           t
         );
       }),
-        (C += "';\n");
+        (A += "';\n");
       var T = w.call(t, 'variable') && t.variable;
       if (T) {
         if (g.test(T)) throw new Error(m);
-      } else C = 'with (obj) {\n' + C + '\n}\n';
-      (C = (O ? C.replace(y, '') : C).replace(b, '$1').replace(v, '$1;')),
-        (C =
+      } else A = 'with (obj) {\n' + A + '\n}\n';
+      (A = (O ? A.replace(y, '') : A).replace(b, '$1').replace(v, '$1;')),
+        (A =
           'function(' +
           (T || 'obj') +
           ') {\n' +
@@ -1077,12 +1083,12 @@
           (O
             ? ", __j = Array.prototype.join;\nfunction print() { __p += __j.call(arguments, '') }\n"
             : ';\n') +
-          C +
+          A +
           'return __p\n}');
       var F = i(function() {
-        return Function(P, D + 'return ' + C).apply(void 0, k);
+        return Function(P, D + 'return ' + A).apply(void 0, k);
       });
-      if (((F.source = C), u(F))) throw F;
+      if (((F.source = A), u(F))) throw F;
       return F;
     }
     var o = r(32),
@@ -2029,6 +2035,6 @@
   },
   function(e, t) {
     e.exports =
-      '<div class=leaflet-measure-polygon-popup> <p><span class=heading>{{ labels.area }}</span> {{ model.areaDisplay }}</p> <p><span class=heading>{{ labels.perimeter }}</span> {{ model.lengthDisplay }}</p> <ul> <li><a href=# class="js-zoomto zoomto">{{ labels.centerOnArea }}</a></li> <li><a href=# class="js-deletemarkup deletemarkup">{{ labels.delete }}</a></li> </ul> </div> ';
+      '<div class=leaflet-measure-polygon-popup> <a class=leaflet-area-popup-close-button role=button aria-label="Close popup"></a> <p><span class=heading>{{ labels.perimeter }}</span> {{ model.lengthDisplay }}</p> <div class=group> <p><span class=heading>{{ labels.area }}</span> {{ model.areaDisplay }}</p> </div> <ul> <li><a href=# class="js-zoomto zoomto">{{ labels.centerOnArea }}</a></li> <li><a href=# class="js-deletemarkup deletemarkup">{{ labels.delete }}</a></li> </ul> </div> ';
   }
 ]);

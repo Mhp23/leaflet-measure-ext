@@ -464,6 +464,16 @@ L.Control.Measure = L.Control.extend({
       },
       false
     );
+
+    const closePopupButton = document.querySelector('.leaflet-area-popup-close-button');
+    const popupElement = document.querySelector('.leaflet-measure-resultpopup');
+    if (closePopupButton) {
+      closePopupButton.addEventListener('click', function() {
+        if (popupElement) {
+          popupElement.parentNode.removeChild(popupElement);
+        }
+      });
+    }
   },
   // handle map click during ongoing measurement
   // add new clicked point, update measure layers and results ui

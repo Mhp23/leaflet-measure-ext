@@ -961,6 +961,12 @@
               { popupContainer: i, model: o, resultFeature: t },
               !1
             );
+          var l = document.querySelector('.leaflet-area-popup-close-button'),
+            p = document.querySelector('.leaflet-measure-resultpopup');
+          l &&
+            l.addEventListener('click', function() {
+              p && p.parentNode.removeChild(p);
+            });
         }
       },
       _handleMeasureClick: function(e) {
@@ -1031,8 +1037,8 @@
       var x,
         O,
         L = o({}, t.imports, n.imports, a),
-        P = p(L),
-        k = s(L, P),
+        k = p(L),
+        P = s(L, k),
         E = 0,
         C = t.interpolate || j,
         A = "__p += '",
@@ -1080,7 +1086,7 @@
           A +
           'return __p\n}');
       var $ = i(function() {
-        return Function(P, D + 'return ' + A).apply(void 0, k);
+        return Function(k, D + 'return ' + A).apply(void 0, P);
       });
       if ((($.source = A), u($))) throw $;
       return $;
@@ -2029,6 +2035,6 @@
   },
   function(e, t) {
     e.exports =
-      '<div class=leaflet-measure-polygon-popup> <p><span class=heading>{{ labels.area }}</span> {{ model.areaDisplay }}</p> <p><span class=heading>{{ labels.perimeter }}</span> {{ model.lengthDisplay }}</p> <ul> <li><a href=# class="js-zoomto zoomto">{{ labels.centerOnArea }}</a></li> <li><a href=# class="js-deletemarkup deletemarkup">{{ labels.delete }}</a></li> </ul> </div> ';
+      '<div class=leaflet-measure-polygon-popup> <a class=leaflet-area-popup-close-button role=button aria-label="Close popup"></a> <p><span class=heading>{{ labels.perimeter }}</span> {{ model.lengthDisplay }}</p> <div class=group> <p><span class=heading>{{ labels.area }}</span> {{ model.areaDisplay }}</p> </div> <ul> <li><a href=# class="js-zoomto zoomto">{{ labels.centerOnArea }}</a></li> <li><a href=# class="js-deletemarkup deletemarkup">{{ labels.delete }}</a></li> </ul> </div> ';
   }
 ]);

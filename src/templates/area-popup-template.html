@@ -1,6 +1,9 @@
 <div class="leaflet-measure-polygon-popup">
-  <p><span class="heading">{{ labels.area }}</span> {{ model.areaDisplay }}</p>
+  <a class="leaflet-area-popup-close-button" role="button" aria-label="Close popup"></a>
   <p><span class="heading">{{ labels.perimeter }}</span> {{ model.lengthDisplay }}</p>
+  <div class="group">
+    <p><span class="heading">{{ labels.area }}</span> {{ model.areaDisplay }}</p>
+  </div>
   <ul>
     <li><a href="#" class="js-zoomto zoomto">{{ labels.centerOnArea }}</a></li>
     <li><a href="#" class="js-deletemarkup deletemarkup">{{ labels.delete }}</a></li>

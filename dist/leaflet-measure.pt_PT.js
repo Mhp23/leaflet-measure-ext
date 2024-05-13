@@ -427,12 +427,12 @@
             d = e.type,
             m = 'FeatureCollection' === d,
             y = 'Feature' === d,
-            b = m ? e.features.length : 1,
-            v = 0;
-          v < b;
-          v++
+            v = m ? e.features.length : 1,
+            b = 0;
+          b < v;
+          b++
         ) {
-          (c = m ? e.features[v].geometry : y ? e.geometry : e),
+          (c = m ? e.features[b].geometry : y ? e.geometry : e),
             (p = !!c && 'GeometryCollection' === c.type),
             (l = p ? c.geometries.length : 1);
           for (var g = 0; g < l; g++) {
@@ -445,13 +445,13 @@
                 case null:
                   break;
                 case 'Point':
-                  if (!1 === t(u, h, v, _, M)) return !1;
+                  if (!1 === t(u, h, b, _, M)) return !1;
                   h++, _++;
                   break;
                 case 'LineString':
                 case 'MultiPoint':
                   for (o = 0; o < u.length; o++) {
-                    if (!1 === t(u[o], h, v, _, M)) return !1;
+                    if (!1 === t(u[o], h, b, _, M)) return !1;
                     h++, 'MultiPoint' === j && _++;
                   }
                   'LineString' === j && _++;
@@ -460,7 +460,7 @@
                 case 'MultiLineString':
                   for (o = 0; o < u.length; o++) {
                     for (i = 0; i < u[o].length - f; i++) {
-                      if (!1 === t(u[o][i], h, v, _, M)) return !1;
+                      if (!1 === t(u[o][i], h, b, _, M)) return !1;
                       h++;
                     }
                     'MultiLineString' === j && _++, 'Polygon' === j && M++;
@@ -471,7 +471,7 @@
                   for (o = 0; o < u.length; o++) {
                     for ('MultiPolygon' === j && (M = 0), i = 0; i < u[o].length; i++) {
                       for (s = 0; s < u[o][i].length - f; s++) {
-                        if (!1 === t(u[o][i][s], h, v, _, M)) return !1;
+                        if (!1 === t(u[o][i][s], h, b, _, M)) return !1;
                         h++;
                       }
                       M++;
@@ -641,8 +641,8 @@
       d = r(87),
       m = r(88),
       y = { imports: { numberFormat: d.numberFormat }, interpolate: /{{([\s\S]+?)}}/g },
-      b = (0, i.default)(m.controlTemplate, y),
-      v = (0, i.default)(m.resultsTemplate, y),
+      v = (0, i.default)(m.controlTemplate, y),
+      b = (0, i.default)(m.resultsTemplate, y),
       g = (0, i.default)(m.pointPopupTemplate, y),
       _ = (0, i.default)(m.linePopupTemplate, y),
       M = (0, i.default)(m.areaPopupTemplate, y),
@@ -716,7 +716,7 @@
       _initLayout: function() {
         var e = this._className,
           t = (this._container = L.DomUtil.create('div', e + ' leaflet-bar'));
-        (t.innerHTML = b({ model: { className: e }, labels: this.options.labels })),
+        (t.innerHTML = v({ model: { className: e }, labels: this.options.labels })),
           t.setAttribute('aria-haspopup', !0),
           L.DomEvent.disableClickPropagation(t),
           L.DomEvent.disableScrollPropagation(t);
@@ -898,7 +898,7 @@
           t = (this._resultsModel = L.extend({}, e, this._getMeasurementDisplayStrings(e), {
             pointCount: this._latlngs.length
           }));
-        this.$results.innerHTML = v({ model: t, labels: this.options.labels });
+        this.$results.innerHTML = b({ model: t, labels: this.options.labels });
       },
       _handleMeasureMove: function(e) {
         this._measureDrag
@@ -961,6 +961,12 @@
               { popupContainer: i, model: o, resultFeature: t },
               !1
             );
+          var l = document.querySelector('.leaflet-area-popup-close-button'),
+            p = document.querySelector('.leaflet-measure-resultpopup');
+          l &&
+            l.addEventListener('click', function() {
+              p && p.parentNode.removeChild(p);
+            });
         }
       },
       _handleMeasureClick: function(e) {
@@ -1066,7 +1072,7 @@
       if (T) {
         if (g.test(T)) throw new Error(m);
       } else A = 'with (obj) {\n' + A + '\n}\n';
-      (A = (O ? A.replace(y, '') : A).replace(b, '$1').replace(v, '$1;')),
+      (A = (O ? A.replace(y, '') : A).replace(v, '$1').replace(b, '$1;')),
         (A =
           'function(' +
           (T || 'obj') +
@@ -1098,8 +1104,8 @@
       d = r(26),
       m = 'Invalid `variable` option passed into `_.template`',
       y = /\b__p \+= '';/g,
-      b = /\b(__p \+=) '' \+/g,
-      v = /(__e\(.*?\)|\b__t\)) \+\n'';/g,
+      v = /\b(__p \+=) '' \+/g,
+      b = /(__e\(.*?\)|\b__t\)) \+\n'';/g,
       g = /[()=,{}\[\]\/\s]/,
       _ = /\$\{([^\\}]*(?:\\.[^\\}]*)*)\}/g,
       M = /($^)/,
@@ -2029,6 +2035,6 @@
   },
   function(e, t) {
     e.exports =
-      '<div class=leaflet-measure-polygon-popup> <p><span class=heading>{{ labels.area }}</span> {{ model.areaDisplay }}</p> <p><span class=heading>{{ labels.perimeter }}</span> {{ model.lengthDisplay }}</p> <ul> <li><a href=# class="js-zoomto zoomto">{{ labels.centerOnArea }}</a></li> <li><a href=# class="js-deletemarkup deletemarkup">{{ labels.delete }}</a></li> </ul> </div> ';
+      '<div class=leaflet-measure-polygon-popup> <a class=leaflet-area-popup-close-button role=button aria-label="Close popup"></a> <p><span class=heading>{{ labels.perimeter }}</span> {{ model.lengthDisplay }}</p> <div class=group> <p><span class=heading>{{ labels.area }}</span> {{ model.areaDisplay }}</p> </div> <ul> <li><a href=# class="js-zoomto zoomto">{{ labels.centerOnArea }}</a></li> <li><a href=# class="js-deletemarkup deletemarkup">{{ labels.delete }}</a></li> </ul> </div> ';
   }
 ]);

@@ -961,6 +961,12 @@
               { popupContainer: i, model: o, resultFeature: t },
               !1
             );
+          var l = document.querySelector('.leaflet-area-popup-close-button'),
+            p = document.querySelector('.leaflet-measure-resultpopup');
+          l &&
+            l.addEventListener('click', function() {
+              p && p.parentNode.removeChild(p);
+            });
         }
       },
       _handleMeasureClick: function(e) {
@@ -1033,15 +1039,15 @@
         L = o({}, t.imports, n.imports, a),
         k = p(L),
         P = s(L, k),
-        E = 0,
-        C = t.interpolate || j,
+        C = 0,
+        E = t.interpolate || j,
         A = "__p += '",
         S = RegExp(
           (t.escape || j).source +
             '|' +
-            C.source +
+            E.source +
             '|' +
-            (C === f ? _ : j).source +
+            (E === f ? _ : j).source +
             '|' +
             (t.evaluate || j).source +
             '|$',
@@ -1053,11 +1059,11 @@
       e.replace(S, function(t, r, n, o, i, s) {
         return (
           n || (n = o),
-          (A += e.slice(E, s).replace(M, l)),
+          (A += e.slice(C, s).replace(M, l)),
           r && ((x = !0), (A += "' +\n__e(" + r + ") +\n'")),
           i && ((O = !0), (A += "';\n" + i + ";\n__p += '")),
           n && (A += "' +\n((__t = (" + n + ")) == null ? '' : __t) +\n'"),
-          (E = s + t.length),
+          (C = s + t.length),
           t
         );
       }),
@@ -2029,6 +2035,6 @@
   },
   function(e, t) {
     e.exports =
-      '<div class=leaflet-measure-polygon-popup> <p><span class=heading>{{ labels.area }}</span> {{ model.areaDisplay }}</p> <p><span class=heading>{{ labels.perimeter }}</span> {{ model.lengthDisplay }}</p> <ul> <li><a href=# class="js-zoomto zoomto">{{ labels.centerOnArea }}</a></li> <li><a href=# class="js-deletemarkup deletemarkup">{{ labels.delete }}</a></li> </ul> </div> ';
+      '<div class=leaflet-measure-polygon-popup> <a class=leaflet-area-popup-close-button role=button aria-label="Close popup"></a> <p><span class=heading>{{ labels.perimeter }}</span> {{ model.lengthDisplay }}</p> <div class=group> <p><span class=heading>{{ labels.area }}</span> {{ model.areaDisplay }}</p> </div> <ul> <li><a href=# class="js-zoomto zoomto">{{ labels.centerOnArea }}</a></li> <li><a href=# class="js-deletemarkup deletemarkup">{{ labels.delete }}</a></li> </ul> </div> ';
   }
 ]);
